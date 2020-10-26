@@ -1,5 +1,6 @@
 package exp.ecs.module.transform.system;
 
+import exp.ecs.system.*;
 import exp.ecs.module.transform.component.*;
 
 private typedef Components = {
@@ -11,18 +12,7 @@ private typedef Components = {
  * Compute global values for Transform2
  */
 @:nullSafety(Off)
-class ComputeGlobalTransform2 extends System {
-	final list:NodeList<Components>;
-	var nodes:Array<Node<Components>>;
-
-	public function new(list) {
-		this.list = list;
-	}
-
-	override function initialize() {
-		return list.bind(v -> nodes = v, tink.state.Scheduler.direct);
-	}
-
+class ComputeGlobalTransform2 extends SingleListSystem<Components> {
 	override function update(dt:Float) {
 		for (node in nodes)
 			node.components.transform.computeGlobal(node.components.parent);
@@ -31,8 +21,8 @@ class ComputeGlobalTransform2 extends System {
 	public static function getNodes(world:World) {
 		// @formatter:off
 		return NodeList.generate(world,
-			@:field(transform) Transform2 &&
-			@:field(parent) ~Parent(Transform2)
+			@:component(transform) Transform2 &&
+			@:component(parent) ~Parent(Transform2)
 		);
 		// @formatter:on
 	}
