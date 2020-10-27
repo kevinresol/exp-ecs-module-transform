@@ -22,7 +22,7 @@ class ComputeLocalTransform2 extends SingleListSystem<Components> {
 		}
 	}
 
-	public static function getNodes(world:World) {
-		return NodeList.generate(world, @:component(transform) Transform2);
+	public static function getSpec() {
+		return NodeList.spec(@:component(transform) Transform2);
 	}
 }

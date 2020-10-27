@@ -18,9 +18,9 @@ class ComputeGlobalTransform2 extends SingleListSystem<Components> {
 			node.components.transform.computeGlobal(node.components.parent);
 	}
 
-	public static function getNodes(world:World) {
+	public static function getSpec() {
 		// @formatter:off
-		return NodeList.generate(world,
+		return NodeList.spec(
 			@:component(transform) Transform2 &&
 			@:component(parent) ~Parent(Transform2)
 		);

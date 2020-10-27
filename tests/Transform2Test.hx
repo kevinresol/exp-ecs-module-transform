@@ -20,28 +20,34 @@ class Transform2Test {
 		child.parent = parent;
 
 		// system
-		final systems = [
-			new ComputeLocalTransform2(Observable.const(new NodeList([
-				new Node(parent, {
-					transform: parent.get(Transform2),
-				}),
-				new Node(child, {
-					transform: child.get(Transform2),
-				}),
-			]))),
-			new ComputeGlobalTransform2(Observable.const(new NodeList([
-				new Node(parent, {
-					transform: parent.get(Transform2),
-					parent: null
-				}),
-				new Node(child, {
-					transform: child.get(Transform2),
-					parent: parent.get(Transform2)
-				}),
-			]))),
+		final systems = @:privateAccess [
+			{
+				final system = new ComputeLocalTransform2(null);
+				system.nodes = new NodeList([
+					new Node(parent, {
+						transform: parent.get(Transform2),
+					}),
+					new Node(child, {
+						transform: child.get(Transform2),
+					}),
+				]);
+				system;
+			},
+			{
+				final system = new ComputeGlobalTransform2(null);
+				system.nodes = new NodeList([
+					new Node(parent, {
+						transform: parent.get(Transform2),
+						parent: null
+					}),
+					new Node(child, {
+						transform: child.get(Transform2),
+						parent: parent.get(Transform2)
+					}),
+				]);
+				system;
+			},
 		];
-		for (system in systems)
-			system.initialize();
 
 		return {parent: parent, child: child, systems: systems}
 	}
