@@ -94,6 +94,11 @@ abstract MatrixView3x3(Matrix3x3) from Matrix3x3 {
 	inline function get_ty()
 		return this.m21;
 
+	@:op(A * B)
+	public inline function multiplyVector(v:Vector3):Vector3 {
+		return this * v;
+	}
+
 	public function toString():String
 		return '[[$m00, $m10, $m20], [$m01, $m11, $m21], [$m02, $m12, $m22]]';
 }
