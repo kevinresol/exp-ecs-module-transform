@@ -14,11 +14,11 @@ private typedef Components = {
 class ComputeLocalTransform2 extends SingleListSystem<Components> {
 	override function update(dt:Float) {
 		for (node in nodes) {
-			final transform = node.components.transform;
+			final transform = node.data.transform;
 			final position = transform.position;
 			final rotation = transform.rotation;
 			final scale = transform.scale;
-			node.components.transform.computeLocal(position.x, position.y, rotation, scale.x, scale.y);
+			node.data.transform.computeLocal(position.x, position.y, rotation, scale.x, scale.y);
 		}
 	}
 

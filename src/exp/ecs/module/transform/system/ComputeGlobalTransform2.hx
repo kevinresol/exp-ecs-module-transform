@@ -15,7 +15,7 @@ private typedef Components = {
 class ComputeGlobalTransform2 extends SingleListSystem<Components> {
 	override function update(dt:Float) {
 		for (node in nodes)
-			node.components.transform.computeGlobal(node.components.parent);
+			node.data.transform.computeGlobal(node.data.parent);
 	}
 
 	public static function getSpec() {
