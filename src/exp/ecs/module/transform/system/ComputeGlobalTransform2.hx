@@ -13,17 +13,12 @@ private typedef Components = {
  */
 @:nullSafety(Off)
 class ComputeGlobalTransform2 extends SingleListSystem<Components> {
+	public function new() {
+		super(NodeList.spec(@:component(transform) Transform2 && @:component(parent) ~Parent(Transform2)));
+	}
+
 	override function update(dt:Float) {
 		for (node in nodes)
 			node.data.transform.computeGlobal(node.data.parent);
-	}
-
-	public static function getSpec() {
-		// @formatter:off
-		return NodeList.spec(
-			@:component(transform) Transform2 &&
-			@:component(parent) ~Parent(Transform2)
-		);
-		// @formatter:on
 	}
 }

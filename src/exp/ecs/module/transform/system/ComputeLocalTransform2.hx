@@ -12,6 +12,10 @@ private typedef Components = {
  */
 @:nullSafety(Off)
 class ComputeLocalTransform2 extends SingleListSystem<Components> {
+	public function new() {
+		super(NodeList.spec(@:component(transform) Transform2));
+	}
+
 	override function update(dt:Float) {
 		for (node in nodes) {
 			final transform = node.data.transform;
@@ -20,9 +24,5 @@ class ComputeLocalTransform2 extends SingleListSystem<Components> {
 			final scale = transform.scale;
 			node.data.transform.computeLocal(position.x, position.y, rotation, scale.x, scale.y);
 		}
-	}
-
-	public static function getSpec() {
-		return NodeList.spec(@:component(transform) Transform2);
 	}
 }
