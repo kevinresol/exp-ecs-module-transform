@@ -22,7 +22,7 @@ class Transform2Test {
 		// system
 		final systems = @:privateAccess [
 			{
-				final system = new ComputeLocalTransform2(null);
+				final system = new ComputeLocalTransform2();
 				system.nodes = new NodeList([
 					new Node(parent, {
 						transform: parent.get(Transform2),
@@ -34,7 +34,7 @@ class Transform2Test {
 				system;
 			},
 			{
-				final system = new ComputeGlobalTransform2(null);
+				final system = new ComputeGlobalTransform2();
 				system.nodes = new NodeList([
 					new Node(parent, {
 						transform: parent.get(Transform2),
